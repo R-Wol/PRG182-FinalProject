@@ -18,6 +18,11 @@ namespace Project_Testing
 {    
     internal class Program
     {
+        // Ruan Wolmarans - 602281
+        // Louis Schonborn - 601778
+        // Tammy Fourie - 601264
+
+        //============== METHOD TO COMPARE AGES =======================
         private static string CompareAges(Dictionary<string, List<string>> collection)
         {
             int[] allAges = new int[collection["Name:"].Count];
@@ -43,7 +48,9 @@ namespace Project_Testing
 
             return $"Youngest Applicant: {allAges[0]}\nOldest Applicant: {allAges[allAges.Length - 1]}";
         }
+        //================================================================
 
+        //========== METHOD TO CALCULATE AVERAGE PIZZAS CONSUMED ================================
         private static string AveragePizza(Dictionary<string, List<string>> collection)
         {
             if(collection == null || collection.Count == 0)
@@ -62,12 +69,16 @@ namespace Project_Testing
 
             return $"The average number of pizzas consumed per first visit is {avgPizza} Pizzas.";
         }
+        //============================================================================================================
 
+        //========= METHOD FOR CHECKING IF A STRING HAS ANY SPECIAL CHARACTERS FOR INPUT VALIDATION ====================
         private static bool HasSpecialChar(string input)
         {
             return input.Any(ch => !char.IsLetterOrDigit(ch));
         }
+        //============================================================================================================
 
+        //=========== METHOD FOR ADDING NEW APPLICANTS =========================
         private static Dictionary<string, List<string>> AddAplicants()
         {
             var Spinner = new Spinner();
@@ -371,7 +382,9 @@ namespace Project_Testing
 
 
         }
+        //=====================================================================================================
 
+        //================= METHOD TO CHECK WHICH APPLICANTS GET THE LOYALTY AWARD (Milestone 2) ===============
         private static List<string> LoyaltyAward(Dictionary<string, List<string>> collection)
         {
             List<string> awarded = new List<string>();
@@ -418,8 +431,9 @@ namespace Project_Testing
            
             return awarded;
         }
+        //=============================================================================
 
-        // METHOD FOR CHECKING TOKEN QUALIFICATION by the use of a dictionary aswell
+        //=================== METHOD FOR CHECKING TOKEN QUALIFICATION =================
         private static List<string> TokenQualification(Dictionary<string, List<string>> collection)
         {
             string result = "";
@@ -468,6 +482,7 @@ namespace Project_Testing
            
             return qualify;
         }
+        //=======================================================================
 
 
         //MENU SYSTEM
@@ -480,8 +495,14 @@ namespace Project_Testing
         }
         static void Main(string[] args)
         {
+            //============= Additional Feature ============================
+            // Added a Resources File called resources.resx then added the RetroSlice.wav audio file to it.
+            // Changed the persistance properties to "embedded in resx"
+            // Created a new SoundPlayer object and referenced the audio file stored in the resources.resx file 
+            //===============================================================
             SoundPlayer player = new SoundPlayer(resources.RetroSlice);
             player.Play();
+            //===============================================================
 
             var Spinner = new Spinner();
             var applicants = new Dictionary<string, List<string>>();
@@ -520,7 +541,7 @@ namespace Project_Testing
                     continue;
                 }
                 Spinner.Start();
-                Thread.Sleep(1000);
+                Thread.Sleep(1500);
                 Spinner.Stop();
 
                 {
@@ -539,7 +560,7 @@ namespace Project_Testing
                             
                             if(applicants.Count == 0)
                             {
-                                Console.WriteLine("No applicants have been added.");
+                                Console.WriteLine("No applicant(s) have been added.");
                             }
                             else
                             {
@@ -558,7 +579,7 @@ namespace Project_Testing
                                     Console.WriteLine("==============================================================");
                                 }
                                 notQualifiedAmount = applicants["Name:"].Count - qualifiedAmount;
-                                Console.WriteLine($"{qualifiedAmount} applicants have qualified for a token.\n{notQualifiedAmount} applicants did not qualify for a token.");
+                                Console.WriteLine($"{qualifiedAmount} applicant(s) have qualified for a token.\n{notQualifiedAmount} applicant(s) did not qualify for a token.");
                                 Console.WriteLine();
                                 Console.WriteLine("Loyalty Award for unlimited credits:\n==========================================================");
                                 
@@ -637,13 +658,14 @@ namespace Project_Testing
                         Console.WriteLine("Do you want to return to main menu? yes or no");
                         retry = Console.ReadLine();
                         Spinner.Start();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(1500);
                         Spinner.Stop();
                         Console.Clear();
                     }
                 }
             }
         }
+        // ================== class created for animation/loading effects between each action =============================
         public class Spinner
         {
 
